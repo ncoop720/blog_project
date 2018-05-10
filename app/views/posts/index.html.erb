@@ -13,8 +13,9 @@
     <% @posts.each do |post| %>
       <div class="panel panel-primary">
         <div class="panel-heading">
+          <%= image_tag post.user.avatar.url, class: "thumbnail" %>
           <i>
-            <%= post.author %>
+            <%= post.user.username %>
             <%= post.created_at.strftime("posted on %m/%d/%Y at %I:%M%p") %>
           </i>
           <h3 class="panel-title"><%= post.title %></h3>
