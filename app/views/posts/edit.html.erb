@@ -1,6 +1,11 @@
-<h1>Editing Post</h1>
+<br>
+<br>
 
 <%= render 'form', post: @post %>
 
-<%= link_to 'Show', @post %> |
-<%= link_to 'Back', posts_path %>
+<div class="pager">
+	<div class="btn-group" role="group">
+		<%= link_to 'View Comments', @post, class: "btn btn-primary btn-lg" %>
+		<%= link_to 'Back to Index', posts_path, class: "btn btn-primary btn-lg" %>
+	</div>
+</div>

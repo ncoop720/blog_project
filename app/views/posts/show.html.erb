@@ -1,32 +1,41 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
-
-<p>
-  <strong>Author:</strong>
-  <%= @post.author %>
-</p>
-
-<p>
-  <strong>Blog entry:</strong>
-  <%= @post.blog_entry %>
-</p>
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <i><%= @post.author %></i>
+      <h3 class="panel-title"><%= @post.title %></h3>
+    </div>
+    <div class="panel-body">
+      <%= @post.blog_entry %>
+    </div>
+</div>
 
 <div id="comments">
-	<%= render "comments/form", comment: @comment %>
+	<div class="row">
+		<div class="col-md-3 col-sm-2 col-xs-1"></div>
+		<div class="col-md-6 col-sm-8 col-xs-10">
+			<%= render "comments/form", comment: @comment %>
+			<% @post.comments.each do |comment| %>
+				<div class="panel panel-info">
+				  <div class="panel-heading">
+					  <i>
+					  	<%= comment.author %>
+					  	<%= comment.created_at.strftime("replied on %m/%d/%Y at %I:%M%p") %>
+					  </i>
+					</div>
+				  <div class="panel-body">
+				    <%= comment.comment_entry %>
+				  </div>
+				</div>
+			<% end %>
+		</div>
+		<div class="col-md-3 col-sm-2 col-xs-1"></div>
+	</div>
+</div>
 
-	<% @post.comments.each do |comment| %>
-		<p>
-			<%= comment.author %>:
-			<br>
-			<%= comment.comment_entry %>
-		</p>
-	<% end %>
-		
+<div class="pager">
+	<div class="btn-group" role="group">
+		<%= link_to 'Edit Post', edit_post_path(@post), class: "btn btn-primary btn-lg" %>
+		<%= link_to 'Back to Index', posts_path, class: "btn btn-primary btn-lg" %>
+	</div>
 </div>
