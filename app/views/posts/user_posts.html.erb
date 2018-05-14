@@ -1,0 +1,22 @@
+<h1 class="text-center">All Posts by <%= @user.username %></h1>
+
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
+    <% @user.posts.each do |post| %>
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <%= image_tag post.user.avatar.url, class: "thumbnail" %>
+          <i>
+            <%= post.user.username %>
+            <%= post.created_at.strftime("posted on %m/%d/%Y at %I:%M%p") %>
+          </i>
+          <h3 class="panel-title"><%= post.title %></h3>
+        </div>
+        <div class="panel-body">
+          <%= post.blog_entry.html_safe %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

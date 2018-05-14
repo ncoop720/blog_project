@@ -4,13 +4,13 @@
     <div class="panel-heading">
     	<%= image_tag @post.user.avatar.url, class: "thumbnail" %>
       <i>
-      	<%= @post.user.username %>
+      	<%= link_to @post.user.username, user_posts_path(name: @post.user.username) %>
       	<%= @post.created_at.strftime("posted on %m/%d/%Y at %I:%M%p") %>
       </i>
       <h3 class="panel-title"><%= @post.title %></h3>
     </div>
     <div class="panel-body">
-      <%= @post.blog_entry %>
+      <%= @post.blog_entry.html_safe %>
     </div>
 </div>
 
@@ -26,12 +26,12 @@
 				  	<%= image_tag comment.user.avatar.url, class: "thumbnail" %>
 
 					  <i>
-					  	<%= comment.user.username %>
+					  	<%= link_to comment.user.username, user_posts_path(name: comment.user.username) %>
 					  	<%= comment.created_at.strftime("replied on %m/%d/%Y at %I:%M%p") %>
 					  </i>
 					</div>
 				  <div class="panel-body">
-				    <%= comment.comment_entry %>
+				    <%= comment.comment_entry.html_safe %>
 				  </div>
 				</div>
 			<% end %>
